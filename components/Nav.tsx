@@ -9,7 +9,7 @@ function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 }
 
-export default function Navbar() {
+export default function Navbar({ children }) {
 	return (
 		<div>
 			<Disclosure as="nav" className="bg-white">
@@ -36,7 +36,7 @@ export default function Navbar() {
 															itemIdx === 0
 																? "text-white bg-bareapp-lighter"
 																: "text-gray-400 hover:text-white hover:bg-bareapp-light"
-														} text-white px-6 py-3 rounded-md text-sm font-medium transition duration-500`}
+														} text-white px-6 py-3 rounded-sm text-sm font-medium transition duration-500`}
 													>
 														{item}
 													</a>
@@ -88,7 +88,7 @@ export default function Navbar() {
 													>
 														<Menu.Items
 															static
-															className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+															className="origin-top-right absolute right-0 mt-2 w-48 rounded-sm shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
 														>
 															{profile.map(
 																(item) => (
@@ -126,7 +126,7 @@ export default function Navbar() {
 								</div>
 								<div className="-mr-2 flex md:hidden">
 									{/* Mobile menu button */}
-									<Disclosure.Button className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+									<Disclosure.Button className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-sm text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
 										<span className="sr-only">
 											Open main menu
 										</span>
@@ -154,7 +154,7 @@ export default function Navbar() {
 											{/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
 											<a
 												href="#"
-												className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+												className="bg-gray-900 text-white block px-3 py-2 rounded-sm text-base font-medium"
 											>
 												{item}
 											</a>
@@ -163,7 +163,7 @@ export default function Navbar() {
 										<a
 											key={item}
 											href="#"
-											className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+											className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-sm text-base font-medium"
 										>
 											{item}
 										</a>
@@ -202,7 +202,7 @@ export default function Navbar() {
 										<a
 											key={item}
 											href="#"
-											className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+											className="block px-3 py-2 rounded-sm text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
 										>
 											{item}
 										</a>
@@ -219,11 +219,9 @@ export default function Navbar() {
 					<h1 className="text-3xl font-bold text-white">Dashboard</h1>
 				</div>
 			</header>
-			<main className="bg-bareapp h-screen">
-				<div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-					<div className="px-4 py-6 sm:px-0">
-						<div className="border border-dashed border-gray-200 rounded-lg" />
-					</div>
+			<main className="bg-bareapp flex flex-1">
+				<div className="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-20">
+					<div className="px-4 sm:px-0">{children}</div>
 				</div>
 			</main>
 		</div>
