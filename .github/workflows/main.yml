@@ -1,0 +1,38 @@
+name: CI Workflow
+
+on:
+    push:
+        branches:
+            - master
+jobs:
+    sem-ver:
+        runs-on: ubuntu-latest
+        name: Generate semantic version tags
+        steps:
+            - uses: actions/checkout@v2
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+            - uses: paulhatch/semantic-version@v4.0.2
+              with:
+                  tag_prefix: "v"
+                  major_pattern: "(MAJOR)"
+                  minor_pattern: "(MINOR)"
+                  format: "${major}.${minor}.${patch}-prerelease${increment}"
+                  change_path: "app/bareapp app/bareapp_core"
+                  namespace: bareapp
+                  short_tags: true
+                  bump_each_commit: false
+    changelog:
+        runs-on: ubuntu-latest
+        name: Conventional Changelog Action
+        steps:
+            - uses: actions/checkout@v2
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+            - uses: TriPSs/conventional-changelog-action@v3
+              with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  git-message: "chore(release): {version}"
+                  preset: "angular"
+                  tag-prefix: "v"
+                  output-file: "CHANGELOG.md"
