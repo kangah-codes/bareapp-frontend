@@ -4,9 +4,7 @@ const ImgCard = () => {
 			<div className="max-w-sm bg-white rounded-lg overflow-hidden shadow-lg">
 				<img className="w-full" src="/test.jpg" alt="Image" />
 				<div className="px-6 py-4">
-					<div className="font-bold text-xl mb-2">
-						The Coldest Sunset
-					</div>
+					<div className="font-bold text-xl mb-2">Example Image</div>
 					<p className="text-gray-700 text-base">
 						Lorem ipsum dolor sit amet, consectetur adipisicing
 					</p>
