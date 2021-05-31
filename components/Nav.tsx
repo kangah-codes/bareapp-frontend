@@ -219,7 +219,7 @@ export default function Navbar({ children }) {
 					<h1 className="text-3xl font-bold text-white">Dashboard</h1>
 				</div>
 			</header>
-			<main className="bg-bareapp flex flex-1">
+			<main className="bg-bareapp flex flex-1 h-screen">
 				<div className="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-20">
 					<div className="px-4 sm:px-0">{children}</div>
 				</div>
