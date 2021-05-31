@@ -8,17 +8,27 @@
     "start": "next start"
   },
   "dependencies": {
+    "@apollo/client": "^3.3.19",
     "@headlessui/react": "^1.2.0",
     "@heroicons/react": "^1.0.1",
     "@rooks/use-outside-click-ref": "^4.11.2",
+    "firebase-admin": "^9.9.0",
+    "firebase-functions": "^3.14.1",
+    "graphql": "^15.5.0",
     "next": "10.2.3",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-loading-skeleton": "^2.2.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
     "@types/react": "^17.0.8",
     "autoprefixer": "^10.2.6",
+    "cross-env": "^7.0.3",
     "postcss": "^8.3.0",
+    "rimraf": "^3.0.2",
     "tailwindcss": "^2.1.2",
     "typescript": "^4.3.2"
   }
