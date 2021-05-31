@@ -1,17 +1,45 @@
 import Head from "next/head";
 import Layout from "../components/Layout";
-import ImgCard from "../components/ImgCard";
+import ImgCardList, { ImgCard } from "../components/ImgCard";
+import { gql, useQuery } from "@apollo/client";
+import client from "../util/Apollo";
+import { useEffect } from "react";
 
-const Images = () => {
-	return (
-		<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-			{[...Array(10).keys()].map((_items) => (
-				<ImgCard />
-			))}
-		</div>
-	);
-};
+const QUERY = gql`
+	query GetImages {
+		images {
+			id
+			name
+			url
+		}
+	}
+`;
+
+// export async function getStaticProps() {
+// 	const { data, loading, error } = await client.query({
+// 		query: ,
+// 	});
+
+// 	return {
+// 		props: {
+// 			images: data.images,
+// 			loading: loading,
+// 		},
+// 	};
+// }
 
 export default function Home() {
-	return <Layout children={<Images />} />;
+	const { data, loading, error } = useQuery(QUERY);
+
+	console.log(data, loading);
+
+	return (
+		<Layout
+			children={
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+					<ImgCardList items={data} loading={loading} />
+				</div>
+			}
+		/>
+	);
 }
