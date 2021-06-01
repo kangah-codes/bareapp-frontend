@@ -2,14 +2,19 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 
-const navigation = ["Dashboard", "Pictures", "Form"];
 const profile = ["Sign out"];
+
+const nav = [
+	{ name: "Dashboard", link: "/" },
+	{ name: "Pictures", link: "/pictures" },
+	{ name: "Form", link: "/form" },
+];
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 }
 
-export default function Navbar({ children }) {
+export default function Navbar({ children, active, title }) {
 	return (
 		<div>
 			<Disclosure as="nav" className="bg-white">
@@ -27,18 +32,19 @@ export default function Navbar({ children }) {
 									</div>
 									<div className="hidden md:block">
 										<div className="ml-10 flex items-baseline space-x-4">
-											{navigation.map((item, itemIdx) => (
-												<Fragment key={item}>
+											{nav.map((item, itemIdx) => (
+												<Fragment key={item.name}>
 													{/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
 													<a
-														href="#"
+														href={item.link}
 														className={` ${
-															itemIdx === 0
+															item.name.toLowerCase() ===
+															active
 																? "text-white bg-bareapp-lighter"
 																: "text-gray-400 hover:text-white hover:bg-bareapp-light"
 														} text-white px-6 py-3 rounded-sm text-sm font-medium transition duration-500`}
 													>
-														{item}
+														{item.name}
 													</a>
 												</Fragment>
 											))}
@@ -148,24 +154,24 @@ export default function Navbar({ children }) {
 
 						<Disclosure.Panel className="md:hidden">
 							<div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-								{navigation.map((item, itemIdx) =>
+								{nav.map((item, itemIdx) =>
 									itemIdx === 0 ? (
-										<Fragment key={item}>
+										<Fragment key={item.name}>
 											{/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
 											<a
-												href="#"
+												href={item.link}
 												className="bg-gray-900 text-white block px-3 py-2 rounded-sm text-base font-medium"
 											>
-												{item}
+												{item.name}
 											</a>
 										</Fragment>
 									) : (
 										<a
-											key={item}
-											href="#"
+											key={item.name}
+											href={item.link}
 											className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-sm text-base font-medium"
 										>
-											{item}
+											{item.name}
 										</a>
 									)
 								)}
@@ -181,10 +187,10 @@ export default function Navbar({ children }) {
 									</div>
 									<div className="ml-3">
 										<div className="text-base font-medium leading-none text-white">
-											Tom Cook
+											Test User
 										</div>
 										<div className="text-sm font-medium leading-none text-gray-400">
-											tom@example.com
+											test@test.com
 										</div>
 									</div>
 									<button className="ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
@@ -216,7 +222,7 @@ export default function Navbar({ children }) {
 
 			<header className="bg-bareapp shadow">
 				<div className="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
-					<h1 className="text-3xl font-bold text-white">Dashboard</h1>
+					<h1 className="text-3xl font-bold text-white">{title}</h1>
 				</div>
 			</header>
 			<main className="bg-bareapp flex flex-1 h-screen">
