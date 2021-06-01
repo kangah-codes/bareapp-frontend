@@ -35,6 +35,8 @@ export default function Home() {
 
 	return (
 		<Layout
+			active="dashboard"
+			title="Dashboard"
 			children={
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 					<ImgCardList items={data} loading={loading} />
