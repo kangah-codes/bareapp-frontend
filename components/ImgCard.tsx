@@ -1,7 +1,13 @@
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
+interface ImgItem {
+	name: string;
+	id: string;
+	url: string;
+}
+
 interface IImgCardProps {
-	item?: string;
+	item?: ImgItem;
 	loading?: boolean;
 }
 
@@ -9,7 +15,7 @@ const ImgCardList = ({ items, loading }) => {
 	if (loading) {
 		return (
 			<>
-				{[Array(10).keys()].map((_items) => (
+				{[...Array(8).keys()].map((_items) => (
 					<ImgCard loading={true} />
 				))}
 			</>
@@ -18,14 +24,17 @@ const ImgCardList = ({ items, loading }) => {
 
 	return (
 		<>
-			{items.images.map((_item) => (
-				<ImgCard item={_item} />
-			))}
+			{items.images.length > 0 ? (
+				items.images.map((_item) => <ImgCard item={_item} />)
+			) : (
+				<p className="text-3xl text-white mx-auto">No Images</p>
+			)}
 		</>
 	);
 };
 
 export const ImgCard = ({ item, loading }: IImgCardProps) => {
+	console.log(item);
 	return (
 		<div className="">
 			{loading ? (
@@ -45,16 +54,16 @@ export const ImgCard = ({ item, loading }: IImgCardProps) => {
 				</div>
 			) : (
 				<div className="max-w-sm bg-white rounded-lg overflow-hidden shadow-lg">
-					<img className="w-full" src="/test.jpg" alt="Image" />
+					<img className="w-full" src={item.url} alt="Image" />
 					<div className="px-6 py-4">
 						<div className="font-bold text-xl mb-2">
-							Example Image
+							{item.name}
 						</div>
-						<p className="text-gray-700 text-base">
+						{/* <p className="text-gray-700 text-base">
 							Lorem ipsum dolor sit amet, consectetur adipisicing
-						</p>
+						</p> */}
 					</div>
-					<div className="px-6 py-4 space-y-2">
+					{/* <div className="px-6 py-4 space-y-2">
 						<span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
 							#tag
 						</span>
@@ -64,7 +73,7 @@ export const ImgCard = ({ item, loading }: IImgCardProps) => {
 						<span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
 							#tag
 						</span>
-					</div>
+					</div> */}
 				</div>
 			)}
 		</div>
