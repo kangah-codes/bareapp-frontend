@@ -15,7 +15,7 @@ const ImgCardList = ({ items, loading }) => {
 	if (loading) {
 		return (
 			<>
-				{[...Array(8).keys()].map((_items) => (
+				{[1, 2, 3, 4, 5, 6, 7, 8].map((_items) => (
 					<ImgCard loading={true} />
 				))}
 			</>
