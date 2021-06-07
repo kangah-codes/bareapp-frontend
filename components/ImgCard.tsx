@@ -24,7 +24,7 @@ const ImgCardList = ({ items, loading }) => {
 
 	return (
 		<>
-			{items.images.length > 0 ? (
+			{items.images && items.images.length > 0 ? (
 				items.images.map((_item) => <ImgCard item={_item} />)
 			) : (
 				<p className="text-3xl text-white mx-auto">No Images</p>
